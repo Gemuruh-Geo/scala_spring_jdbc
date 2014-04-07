@@ -21,6 +21,21 @@ object Main {
 	  
 	  /*Batch Insert*/
 	  
+	 /* val employeess = new ArrayBuffer[Employee]
+	  val emp1 = new Employee
+	  emp1.id = 131
+	  emp1.name = "Geo 3"
+	  emp1.age = 26
+	  
+	  val emp2 = new Employee
+	  emp2.id = 132
+	  emp2.name = "Geo 32"
+	  emp2.age = 26
+	  
+	  employeess+=emp1;employeess+=emp2;
+	  employeeDao.batchInsert(employeess)
+	  */
+	  
 	  /*--------Find By ID------------*/
 	  println(employeeDao.findById(110))
 	  

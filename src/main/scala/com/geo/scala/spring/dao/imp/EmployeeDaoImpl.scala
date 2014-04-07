@@ -13,6 +13,8 @@ import com.geo.scala.spring.util.AllQuery
 import scala.collection.JavaConverters._
 import com.geo.scala.spring.util.JdbcTempalteUtil
 import java.sql.Types
+import org.springframework.jdbc.core.BatchPreparedStatementSetter
+import java.sql.PreparedStatement
 
 
 class EmployeeDaoImpl extends EmployeeDao{
@@ -45,6 +47,18 @@ class EmployeeDaoImpl extends EmployeeDao{
     
   }
   override def batchInsert(employees:ArrayBuffer[Employee]):Unit={
-    
+    val sql = AllQuery.insert.toString
+    JdbcTempalteUtil.batchUpdate(sql,new BatchPreparedStatementSetter(){
+      override def setValues(ps:PreparedStatement, i:Int){
+        val emp = employees(i)
+        ps.setInt(1, emp.id)
+        ps.setString(2, emp.name)
+        ps.setInt(3, emp.age)
+        
+      }
+      override def getBatchSize():Int={
+        employees.size
+      }
+    })
   }
 }
